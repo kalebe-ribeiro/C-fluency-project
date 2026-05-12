@@ -15,7 +15,7 @@ typedef struct{
     size_t capacity;
 } RingBuf;
 
-RingBuf rb_init(size_t capacity);
+RingBuf rb_init(int capacity);
 
 bool rb_push(RingBuf *rb, float value, double timestamp_ms);
 bool rb_pop(RingBuf *rb, Entry *out);

@@ -5,23 +5,31 @@
 #include "ring_buf.h"
 
 int main(){
-    
-    double start = millis();
-    double timestamp_ms;
+    int reading_size;
+    int buf_size;
     
     RingBuf rb;
     Entry out;
 
-    rb = rb_init(5);
+    printf("Enter the number of readings: ");
+    scanf("%d", &reading_size);
+
+    printf("Enter the buffer size: ");
+    scanf("%d", &buf_size);
+
+    rb = rb_init(buf_size);
     if (rb.buf == NULL){
         return 1;
     }
     
-    // generating 30 random temperature readings
-    float reading[30];
+    // generating n random temperature readings
+    float reading[reading_size];
     srand(time(NULL));
+
+    double start = millis();
+    double timestamp_ms;
     
-    for (size_t i = 0; i < 30; i++){
+    for (int i = 0; i < reading_size; i++){
         reading[i] = rand() % (85 - (-10) + 1) + (-10);
         timestamp_ms = millis() - start;
         

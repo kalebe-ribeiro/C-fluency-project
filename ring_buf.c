@@ -4,7 +4,7 @@
 #include "ring_buf.h"
 #include <time.h>
 
-RingBuf rb_init(size_t capacity){
+RingBuf rb_init(int capacity){
     RingBuf rb;
 
     rb.capacity = capacity;
@@ -97,7 +97,7 @@ float rb_avg(RingBuf *rb){
 
 void rb_dump_csv(RingBuf *rb){
     for (size_t i = 0; i != rb->count; i++){
-        printf("LOG --- Value: %f, Timestamp: %.4f\n", rb->buf[(rb->tail + i) % rb->capacity].value, rb->buf[(rb->tail + i) % rb->capacity].timestamp_ms);
+        printf("LOG --- Value: %.2f, Timestamp: %.4f\n", rb->buf[(rb->tail + i) % rb->capacity].value, rb->buf[(rb->tail + i) % rb->capacity].timestamp_ms);
     }
     return;
 }
@@ -109,3 +109,4 @@ double millis() {
 
     return (double)ts.tv_sec * 1000 + (double)ts.tv_nsec / 1000000;
 }
+
