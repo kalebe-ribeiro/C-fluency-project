@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 typedef struct{
     uint8_t value;
     uint8_t timestamp_ms;
@@ -23,4 +25,4 @@ bool rb_full(const RingBuf *rb);
 void rb_free(RingBuf *rb);
 size_t rb_avg(RingBuf *rb);
 
-long long millis();
+long millis();

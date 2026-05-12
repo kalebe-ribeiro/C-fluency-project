@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include "ring_buf.h"
 
 int main(){
     
-    long long start = millis()
-    long long timestamp_ms;
+    long start = millis();
+    long timestamp_ms;
     
     RingBuf rb;
     Entry entry;
@@ -23,12 +24,12 @@ int main(){
         timestamp_ms = millis() - start;
         
         if (!rb_full(&rb)){
-            rb_push(&rb, reading[i], timestamp_ms)
+            rb_push(&rb, reading[i], timestamp_ms);
         }
         else{
-            rb_avg(&rb);
+            printf("Average temperature: %f", rb_avg(&rb));
             rb_pop(&rb, &out);
-            rb_push(&rb, reading[i], timestamp_ms)
+            rb_push(&rb, reading[i], timestamp_ms);
         }   
         
     }

@@ -91,7 +91,7 @@ float rb_avg(RingBuf *rb){
     return avg;
 }
 
-long long millis() {
+long millis() {
     struct timespec ts;
 
     clock_gettime(CLOCK_MONOTONIC, &ts);
