@@ -7,7 +7,7 @@
 int main(){
     
     long long start = millis();
-    uint32_t timestamp_ms;
+    long long timestamp_ms;
     
     RingBuf rb;
     Entry entry;

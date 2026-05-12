@@ -19,7 +19,7 @@ RingBuf rb_init(size_t capacity){
     return rb;
 }
 
-bool rb_push(RingBuf *rb, float value, uint32_t timestamp_ms){
+bool rb_push(RingBuf *rb, float value, long long timestamp_ms){
     Entry entry;
 
     entry.value = value;
@@ -58,11 +58,11 @@ bool rb_peek(const RingBuf *rb, Entry *out){
     return 1;
 }
 
-size_t rb_count(RingBuf *rb){
+size_t rb_count(const RingBuf *rb){
     return rb->count;
 }
 
-bool rb_full(RingBuf *rb){
+bool rb_full(const RingBuf *rb){
     if (rb->count != rb->capacity){
         return 0;
     }
@@ -89,7 +89,7 @@ float rb_avg(RingBuf *rb){
     return avg;
 }
 
-long millis() {
+long long millis() {
     struct timespec ts;
 
     clock_gettime(CLOCK_MONOTONIC, &ts);
