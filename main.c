@@ -19,7 +19,7 @@ int main(){
     float reading[30];
     srand(time(NULL));
     
-    for (int i = 0; i < 30; i++){
+    for (size_t i = 0; i < 30; i++){
         reading[i] = rand() % (40 - 20 + 1) + 20;
         timestamp_ms = millis() - start;
         
@@ -27,7 +27,7 @@ int main(){
             rb_push(&rb, reading[i], timestamp_ms);
         }
         else{
-            printf("Average temperature: %f", rb_avg(&rb));
+            printf("Average temperature: %f\n", rb_avg(&rb));
             rb_pop(&rb, &out);
             rb_push(&rb, reading[i], timestamp_ms);
         }   
@@ -35,7 +35,6 @@ int main(){
     }
 
     rb_free(&rb);
-
 
     return 0;
 }
