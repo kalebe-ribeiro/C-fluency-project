@@ -6,14 +6,14 @@
 
 int main(){
     
-    long start = millis();
-    long timestamp_ms;
+    long long start = millis();
+    uint32_t timestamp_ms;
     
     RingBuf rb;
     Entry entry;
     Entry out;
 
-    rb_init(8);
+    rb = rb_init(8);
     
     // generating 30 random temperature readings
     float reading[30];
@@ -34,6 +34,7 @@ int main(){
         
     }
 
+    rb_free(&rb);
 
 
     return 0;

@@ -1,10 +1,10 @@
 #pragma once
-
+#include <stdbool.h>
 #include <stdint.h>
 
 typedef struct{
-    uint8_t value;
-    uint8_t timestamp_ms;
+    float value;
+    uint32_t timestamp_ms;
 } Entry;
 
 typedef struct{
@@ -23,6 +23,6 @@ bool rb_peek(const RingBuf *rb, Entry *out);
 size_t rb_count(const RingBuf *rb);
 bool rb_full(const RingBuf *rb);
 void rb_free(RingBuf *rb);
-size_t rb_avg(RingBuf *rb);
+float rb_avg(RingBuf *rb);
 
 long millis();

@@ -1,5 +1,3 @@
-#pragma once
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -50,7 +48,7 @@ bool rb_pop(RingBuf *rb, Entry *out){
     return 1;
 }
 
-bool rb_peek(RingBuf *rb, Entry *out){
+bool rb_peek(const RingBuf *rb, Entry *out){
     if (rb->count == 0){
         return 0;
     }
@@ -74,7 +72,7 @@ bool rb_full(RingBuf *rb){
 
 void rb_free(RingBuf *rb){
     free(rb->buf);
-    rb->buf = NULL
+    rb->buf = NULL;
 }
 
 float rb_avg(RingBuf *rb){
