@@ -12,7 +12,7 @@ int main(){
     RingBuf rb;
     Entry out;
 
-    rb = rb_init(2);
+    rb = rb_init(5);
     if (rb.buf == NULL){
         return 1;
     }
@@ -27,6 +27,7 @@ int main(){
         
         if (!rb_full(&rb)){
             rb_push(&rb, reading[i], timestamp_ms);
+            printf("Average buffer temperature: %.2f\n", rb_avg(&rb));
         }
         else{
             printf("Average buffer temperature: %.2f\n", rb_avg(&rb));
