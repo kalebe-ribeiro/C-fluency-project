@@ -14,6 +14,9 @@ int main(){
     Entry out;
 
     rb = rb_init(8);
+    if (rb.buf == NULL){
+        return 1;
+    }
     
     // generating 30 random temperature readings
     float reading[30];
