@@ -29,7 +29,7 @@ int main(){
             rb_push(&rb, reading[i], timestamp_ms);
         }
         else{
-            printf("Average buffer temperature: %f\n", rb_avg(&rb));
+            printf("Average buffer temperature: %.2f\n", rb_avg(&rb));
             rb_pop(&rb, &out);
             rb_push(&rb, reading[i], timestamp_ms);
         }   

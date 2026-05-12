@@ -84,15 +84,20 @@ float rb_avg(RingBuf *rb){
 
         sum += rb->buf[(rb->tail + i) % rb->capacity].value;
     }
-
-    avg = sum/rb->count;
+    if (rb->count == 0){
+        avg = 0;
+    }
+    else{
+        avg = sum/rb->count;
+    }
+    
 
     return avg;
 }
 
 void rb_dump_csv(RingBuf *rb){
     for (size_t i = 0; i != rb->count; i++){
-        printf("LOG --- Value: %f, Timestamp: %f\n", rb->buf[(rb->tail + 1) % rb->capacity].value, rb->buf[(rb->tail + 1) % rb->capacity].timestamp_ms);
+        printf("LOG --- Value: %f, Timestamp: %.4f\n", rb->buf[(rb->tail + i) % rb->capacity].value, rb->buf[(rb->tail + i) % rb->capacity].timestamp_ms);
     }
     return;
 }
@@ -102,6 +107,5 @@ double millis() {
 
     clock_gettime(CLOCK_MONOTONIC, &ts);
 
-    return (double)ts.tv_sec * 1000 +
-           ts.tv_nsec / 1000000;
+    return (double)ts.tv_sec * 1000 + (double)ts.tv_nsec / 1000000;
 }
