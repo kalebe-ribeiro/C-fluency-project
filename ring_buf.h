@@ -4,7 +4,7 @@
 
 typedef struct{
     float value;
-    long long timestamp_ms;
+    double timestamp_ms;
 } Entry;
 
 typedef struct{
@@ -17,12 +17,13 @@ typedef struct{
 
 RingBuf rb_init(size_t capacity);
 
-bool rb_push(RingBuf *rb, float value, long long timestamp_ms);
+bool rb_push(RingBuf *rb, float value, double timestamp_ms);
 bool rb_pop(RingBuf *rb, Entry *out);
 bool rb_peek(const RingBuf *rb, Entry *out);
 size_t rb_count(const RingBuf *rb);
 bool rb_full(const RingBuf *rb);
 void rb_free(RingBuf *rb);
 float rb_avg(RingBuf *rb);
+void rb_dump_csv(RingBuf *rb);
 
-long long millis();
+double millis();

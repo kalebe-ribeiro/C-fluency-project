@@ -20,7 +20,7 @@ RingBuf rb_init(size_t capacity){
     return rb;
 }
 
-bool rb_push(RingBuf *rb, float value, long long timestamp_ms){
+bool rb_push(RingBuf *rb, float value, double timestamp_ms){
     Entry entry;
 
     entry.value = value;
@@ -90,11 +90,18 @@ float rb_avg(RingBuf *rb){
     return avg;
 }
 
-long long millis() {
+void rb_dump_csv(RingBuf *rb){
+    for (size_t i = 0; i != rb->count; i++){
+        printf("LOG --- Value: %f, Timestamp: %f\n", rb->buf[(rb->tail + 1) % rb->capacity].value, rb->buf[(rb->tail + 1) % rb->capacity].timestamp_ms);
+    }
+    return;
+}
+
+double millis() {
     struct timespec ts;
 
     clock_gettime(CLOCK_MONOTONIC, &ts);
 
-    return (long long)ts.tv_sec * 1000 +
+    return (double)ts.tv_sec * 1000 +
            ts.tv_nsec / 1000000;
 }
